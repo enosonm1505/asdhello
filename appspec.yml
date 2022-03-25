@@ -1,28 +1,5 @@
 version: 0.0
-os: linux
+os: windows
 files:
-  # unzip the build artifact in ~/app
-  - source: /
-    destination: /var/www/html/
-permissions:
-  # change permissions from root to ec2-user
-  - object: /home/ec2-user/app
-    pattern: "**"
-    owner: root
-    group: root
-hooks:
-  AfterInstall:
-    # copy the let's encrypt certs from their default dir to the app dir
-    - location: deploy/install-cert.sh
-      timeout: 60
-      runas: root
-  ApplicationStart:
-    # start the application
-    - location: deploy/start-service.sh
-      timeout: 300
-      runas: root
-  ApplicationStop:
-    # stop the application
-    - location: deploy/stop-service.sh
-      timeout: 300
-      runas: root
+  - source: \index.html
+    destination: C:\inetpub\wwwroot
